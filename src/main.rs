@@ -14,7 +14,11 @@ fn main() {
             }
             println!("");
         } else {
-            println!("Please enter a number > 0.");
+            println!("Enter a number! It has to be bigger than or equal to 0.");
         }
+    } else {
+        println!("Random character generator\n");
+        println!("Usage:");
+        println!("    rchars <number of characters to generate>");
     }
 }
