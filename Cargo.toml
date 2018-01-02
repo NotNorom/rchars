@@ -1,0 +1,6 @@
+[package]
+name = "rchars"
+version = "0.1.0"
+authors = ["Andre Julius <norom@jimileibniz.de>"]
+
+[dependencies]
