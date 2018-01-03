@@ -3,6 +3,12 @@ use rand::{thread_rng, Rng};
 
 use std::env;
 
+fn print_help() {
+    println!("Random character generator\n");
+    println!("Usage:");
+    println!("    rchars <number of characters to generate>");
+}
+
 fn main() {
     if let Some(first_argument) = env::args().nth(1) {
         if let Ok(count) = first_argument.parse::<usize>() {
@@ -17,8 +23,6 @@ fn main() {
             println!("Enter a number! It has to be bigger than or equal to 0.");
         }
     } else {
-        println!("Random character generator\n");
-        println!("Usage:");
-        println!("    rchars <number of characters to generate>");
+        print_help();
     }
 }
