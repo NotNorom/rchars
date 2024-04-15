@@ -1,7 +1,9 @@
 [package]
 name = "rchars"
-version = "0.2.0"
-authors = ["Andre Julius <norom@jimileibniz.de>"]
+edition = "2021"
+version = "0.2.1"
+authors = ["Andre Julius <noromoron@gmail.com>"]
 
 [dependencies]
-rand = ""
+rand = "0.8.5"
+

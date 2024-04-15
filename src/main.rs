@@ -1,28 +1,31 @@
-extern crate rand;
-use rand::{thread_rng, Rng};
+use std::process::ExitCode;
 
-use std::env;
+use rand::{
+    distributions::{Alphanumeric, Distribution},
+    thread_rng,
+};
 
-fn print_help() {
-    println!("Random character generator\n");
-    println!("Usage:");
-    println!("    rchars <number of characters to generate>");
-}
+const HELP_TEXT: &'static str = r#"Random character generator
 
-fn main() {
-    if let Some(first_argument) = env::args().nth(1) {
-        if let Ok(count) = first_argument.parse::<usize>() {
-            let mut rng = thread_rng();
-            let gen = rng.gen_ascii_chars();
-            let result = gen.take(count);
-            for elem in result {
-                print!("{}", elem);
-            }
-            println!("");
-        } else {
-            println!("Enter a number! It has to be bigger than or equal to 0.");
-        }
-    } else {
-        print_help();
-    }
+Usage:
+    rchars <number of characters to generate>"#;
+
+fn main() -> ExitCode {
+    let Some(first_argument) = std::env::args().nth(1) else {
+        println!("{HELP_TEXT}");
+        return ExitCode::FAILURE;
+    };
+
+    let Ok(count) = first_argument.parse::<usize>() else {
+        println!("Enter a number! It has to be bigger than or equal to 0.");
+        return ExitCode::FAILURE;
+    };
+
+    Alphanumeric
+        .sample_iter(thread_rng())
+        .take(count)
+        .for_each(|elem| print!("{}", elem as char));
+    println!("");
+
+    ExitCode::SUCCESS
 }
